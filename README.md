@@ -1,4 +1,4 @@
-<h1 align="center"><b>RsnChat Python</b> <img src="https://i.ibb.co/0J89TrT/rsn-bot-1.png" width="30" style="border-radius: 50%; margin-bottom: -5px"></h1>
+<h1 align="center"><b>RsnChat</b> <img src="https://i.ibb.co/0J89TrT/rsn-bot-1.png" width="30" style="border-radius: 50%; margin-bottom: -5px"></h1>
 
 <div align="center">
   <p><i>A powerful Discord AI chat bot with multiple models and personalities</i></p>

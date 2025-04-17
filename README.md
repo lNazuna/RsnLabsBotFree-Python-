@@ -54,7 +54,7 @@
 git clone https://github.com/rsnlabs/rsnlabs.py-free-bot.git
 
 # Enter the directory
-cd discord-ai-chat-bot
+cd rsnlabs.py-free-bot
 
 # Install dependencies
 pip install -r requirements.txt

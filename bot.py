@@ -3,9 +3,9 @@ from discord.ext import commands
 import json
 import asyncio
 from utils.logger import setup_logger
+from utils.database import DatabaseHandler
 from rsnchat import RsnChat
 
-# Set up the logger
 logger = setup_logger()
 
 with open('config.json') as f:
@@ -13,7 +13,6 @@ with open('config.json') as f:
 
 intents = discord.Intents.all()
 
-# Initialize RsnChat with the token from config
 rsn_chat = RsnChat(config["rsnchat_key"])
 
 class MyBot(commands.Bot):
@@ -27,9 +26,11 @@ class MyBot(commands.Bot):
         self.initial_extensions = [
             'cogs.general',
             'cogs.moderation',
-            'cogs.rsnchat'
+            'cogs.rsnchat',
+            'cogs.settings'
         ]
         self.synced = False
+        self.db = DatabaseHandler()
 
     async def setup_hook(self):
         for ext in self.initial_extensions:
@@ -65,17 +66,26 @@ class MyBot(commands.Bot):
             await self.sync_commands()
 
     async def on_message(self, message: discord.Message):
-        # Ignore bot messages
         if message.author.bot:
             return
 
-        # Check if it's in the configured channel
-        if message.channel.id != config["chat_channel_id"]:
+        await self.process_commands(message)
+        
+        channel_id_str = str(message.channel.id)
+        
+        channels_data = self.db.list_channels()
+        
+        if channel_id_str not in channels_data:
             return
-
+        
+        model = self.db.get_channel_model(message.channel.id)
+        if not model:
+            logger.warning(f"Channel {channel_id_str} found in database but has no model configured")
+            return
+        
         try:
             async with message.channel.typing():
-                response = rsn_chat.generate_chat_response("gemini", message.content)
+                response = rsn_chat.generate_chat_response(model, message.content)
                 reply = response.get('message', '')
 
                 if reply:

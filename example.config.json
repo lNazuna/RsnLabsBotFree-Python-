@@ -1,0 +1,26 @@
+{
+    "_comment_note": "NOTE: All fields starting with '_comment_' are just explanatory notes and not actual configuration settings",
+    "_comment_intro": "BOT CONFIGURATION - Please read the instructions below carefully before editing",
+    
+    "_comment_token": "Discord authentication token - Get it from https://discord.com/developers/applications",
+    "token": "",
+    
+    "_comment_prefix": "Prefix for traditional bot commands (does not affect slash commands)",
+    "prefix": "!",
+    
+    "_comment_owner": "List of user IDs with bot owner permissions (integer numbers)",
+    "owner_ids": [123456789012345678],
+    
+    "_comment_guild": "Server specific mode - 'true' to restrict the bot to a specific server, 'false' for global",
+    "guild_only": false,
+    
+    "_comment_guild_id": "Server ID if guild_only is true (can be number or string)",
+    "guild_id": "1153324895883776002",
+    
+    "_comment_rsn": "RSNChat API key - Get it from https://rsnlabs.com/api/register",
+    "rsnchat_key": "",
+    
+    "_comment_instructions": "HOW TO CONFIGURE CHANNELS: Use the /setup command to add, update, or remove channels for AI chat usage",
+    
+    "_comment_footer": "IMPORTANT: Entries starting with '_comment_' are informational only. The actual configuration settings are the ones without this prefix."
+}
